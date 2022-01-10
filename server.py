@@ -11,7 +11,7 @@ def main():
    weather_process.start()
    while True:
       try:
-         weather_data = int(parent_conn.recv()) # TODO: need to deduce clever way to pack and parse weather data from weather process to server
+         weather_data = int(parent_conn.recv()) # TODO: deduce clever way to pack and parse weather data from weather process to server
          print(weather_data)
          weather_object.temp = weather_data # TODO: see above TODO note
       except Exception as e:

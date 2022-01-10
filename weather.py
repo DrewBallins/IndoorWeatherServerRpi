@@ -9,7 +9,7 @@ def parse_udp(child_conn):
    sock.bind((UDP_IP, UDP_PORT))
    while True:
       data, address = sock.recvfrom(4096)
-      # TODO: parse and pack data received
+      # TODO: parse and pack data received from ESP8266
       child_conn.send(data)
    sock.close()
    child_conn.close()
