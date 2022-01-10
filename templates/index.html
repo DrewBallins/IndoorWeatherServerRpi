@@ -5,6 +5,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
    <link href="/static/style.css" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script src="/static/update_temp_data.js"></script>
    <title>ESP8266 Weather Report</title>
 </head>
 
@@ -26,8 +28,9 @@
             </svg>
          </div>
          <div class="side-by-side temperature-text">Temperature</div>
-         <div class="side-by-side temperature">{{ temperature }}
-            <span class="superscript">°C</span>
+         <div class="side-by-side temperature">
+            <span id="temperature"></span>
+            <span class="superscript">°F</span>
          </div>
       </div>
       <div class="data">
@@ -42,7 +45,8 @@
             </svg>
          </div>
          <div class="side-by-side humidity-text">Humidity</div>
-         <div class="side-by-side humidity">{{ humidity }}
+         <div class="side-by-side humidity">
+            <span id="humidity"></span>
             <span class="superscript">%</span>
          </div>
       </div>
