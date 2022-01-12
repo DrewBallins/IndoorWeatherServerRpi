@@ -1,2 +1,5 @@
-# don't track nohup output
+# headless process nohup output
 **/nohup.out
+
+# compiled pyhon files
+__pycache__/
