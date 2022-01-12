@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from multiprocessing import Process, Pipe
-import socket, weather, serverThread
+import socket, weather, server_thread
 
 weather_object = weather.Weather()
 
@@ -37,7 +37,7 @@ def start_server():
       humidity = weather_object.humidity
       return jsonify(temperature = temperature, humidity = humidity)
 
-   server = serverThread.ServerThread(app)
+   server = server_thread.ServerThread(app)
    server.start()
    print('server started')
 
