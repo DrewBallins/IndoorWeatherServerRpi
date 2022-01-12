@@ -11,9 +11,9 @@ def main():
    weather_process.start()
    while True:
       try:
-         weather_data = int(parent_conn.recv()) # TODO: deduce clever way to pack and parse weather data from weather process to server
-         print(weather_data)
-         weather_object.temp = weather_data # TODO: see above TODO note
+         weather_data = parent_conn.recv() # TODO: deduce clever way to pack and parse weather data from weather process to server
+         weather_object.humidity = round(weather_data[0])
+         weather_object.temp = weather_data[1]
       except Exception as e:
          print(e)
    stop_server()
@@ -35,7 +35,6 @@ def start_server():
    def data():
       temperature = weather_object.temp_fahrenheit_get()
       humidity = weather_object.humidity
-      print("Temperature = {}, humidity = {}".format(temperature, humidity))
       return jsonify(temperature = temperature, humidity = humidity)
 
    server = serverThread.ServerThread(app)
