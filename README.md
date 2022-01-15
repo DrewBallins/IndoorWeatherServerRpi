@@ -1,2 +1,2 @@
 # IndoorWeatherServerRpi
-Python web server for indoor weather ran on raspberry pi
+Raspberry Pi hosted Python web server for indoor weather station
