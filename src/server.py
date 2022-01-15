@@ -7,7 +7,7 @@ weather_object = weather.Weather()
 def main():
    start_server()
    parent_conn, child_conn = Pipe()
-   weather_process = Process(target=weather.parse_udp, args=(child_conn, ))
+   weather_process = Process(target=weather.relay_udp_data, args=(child_conn, ))
    weather_process.start()
    while True:
       try:
