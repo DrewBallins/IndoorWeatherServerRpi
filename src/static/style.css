@@ -64,6 +64,29 @@ h1 {
    color: #f39c12;
 }
 
+/* Styles for Sump Fill Level (matches temperature/humidity layout) */
+.fillLevel-icon {
+   background-color: #2ecc71;
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   line-height: 36px;
+}
+
+.fillLevel-text {
+   font-weight: 600;
+   padding-left: 15px;
+   font-size: 19px;
+   width: 160px;
+   text-align: left;
+}
+
+.fillLevel {
+   font-weight: 300;
+   font-size: 60px;
+   color: #2ecc71;
+}
+
 .superscript {
    font-size: 17px;
    font-weight: 600;

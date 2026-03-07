@@ -6,6 +6,7 @@ function update_data()
       {
          $("#temperature").text(data.temperature);
          $("#humidity").text(data.humidity);
+         $("#fillLevel").text(data.fillLevel);
       }
    );
 }
