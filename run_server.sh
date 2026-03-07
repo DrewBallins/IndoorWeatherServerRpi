@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd /home/pi/IndoorWeatherServer/src
+cd ./src
 
 nohup python3 server.py &
