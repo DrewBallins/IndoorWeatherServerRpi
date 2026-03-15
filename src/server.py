@@ -2,7 +2,8 @@ from flask import Flask, render_template, jsonify
 from multiprocessing import Process, Pipe
 import socket, weather, server_thread
 
-weather_object = weather.Weather()
+DATA_UPDATE_TIMEOUT = 120 # Seconds (2 minutes)
+WeatherObject = weather.Weather()
 
 def main():
    start_server()
@@ -11,10 +12,16 @@ def main():
    weather_process.start()
    while True:
       try:
-         weather_data = parent_conn.recv() # TODO: deduce clever way to pack and parse weather data from weather process to server
-         weather_object.humidity = round(weather_data[0])
-         weather_object.temp = weather_data[1]
-         weather_object.fillLevel = weather_data[2]
+         if (parent_conn.poll(DATA_UPDATE_TIMEOUT)):
+            weather_data = parent_conn.recv()
+            WeatherObject.humidity = round(weather_data[0])
+            WeatherObject.temp = weather_data[1]
+            WeatherObject.fillLevel = weather_data[2]
+         else:
+            # No weather data was received before timeout, set weather data to N/A
+            WeatherObject.humidity = "---"
+            WeatherObject.temp = "---"
+            WeatherObject.fillLevel = "---"
       except Exception as e:
          print(e)
    stop_server()
@@ -34,9 +41,9 @@ def start_server():
 
    @app.route('/_data', methods= ['GET'])
    def data():
-      temperature = weather_object.temp_fahrenheit_get()
-      humidity = weather_object.humidity
-      fillLevel = weather_object.fillLevel
+      temperature = WeatherObject.temp_fahrenheit_get()
+      humidity = WeatherObject.humidity
+      fillLevel = WeatherObject.fillLevel
       return jsonify(temperature = temperature, humidity = humidity, fillLevel = fillLevel)
 
    server = server_thread.ServerThread(app)
