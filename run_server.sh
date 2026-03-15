@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd ./src
+./src/kill_server.sh
 
-nohup python3 server.py &
+nohup python3 src/server.py &

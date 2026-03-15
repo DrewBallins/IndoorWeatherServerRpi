@@ -28,9 +28,12 @@ def parse_msg(udpData):
 
 class Weather():
    def __init__(self):
-      self.temp = 0
-      self.humidity = 0
-      self.fillLevel = 0
+      self.temp = "---"
+      self.humidity = "---"
+      self.fillLevel = "---"
    
    def temp_fahrenheit_get(self):
-      return round(self.temp * 1.8 + 32)
+      if (self.temp == "---"):
+         return self.temp
+      else:
+         return round(self.temp * 1.8 + 32)
